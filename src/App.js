@@ -1,26 +1,24 @@
 import React, { Component } from 'react';
-import logo from './logo.svg';
-import './App.css';
+import {HashRouter,Switch, Route} from 'react-router-dom'
+
+import Navbar from './components/nav'
+import Home from './container/home'
+import Movies from './container/movies'
+import Genre from './container/genre'
+import Profile from './container/movieProfile'
 
 class App extends Component {
   render() {
     return (
-      <div className="App">
-        <header className="App-header">
-          <img src={logo} className="App-logo" alt="logo" />
-          <p>
-            Edit <code>src/App.js</code> and save to reload.
-          </p>
-          <a
-            className="App-link"
-            href="https://reactjs.org"
-            target="_blank"
-            rel="noopener noreferrer"
-          >
-            Learn React
-          </a>
-        </header>
-      </div>
+      <HashRouter>
+        <Route path='/' component={ Navbar } />
+        <Switch>
+          <Route path='/' exact component={Home} />
+          <Route path='/movies' exact component={Movies} />
+          <Route path='/movies/byGenre' exact component={Genre}/>
+          <Route path='/movies/:id' exact component={Profile} />
+        </Switch>
+      </HashRouter>
     );
   }
 }
